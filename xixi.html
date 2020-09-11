@@ -1,25 +1,113 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-10 15:29:37
- * @LastEditTime: 2020-09-11 10:40:04
+ * @LastEditTime: 2020-09-11 11:55:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \9-2c:\Users\wangyujie\Desktop\xixi\xixi.html
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    
+    div {
+    width: 730px;
+    height: 454px;
+    margin: 0 auto;
+    }
+    
+    img {
+    position: absolute;
+    display: none;
+    }
+    
+    ul {
+    position: relative;
+    top: 400px;
+    left: 566px;
+    }
+    
+    ul>li {
+    width: 30px;
+    height: 30px;
+    list-style: none;
+    display: inline-block;
+    border: #000 1px solid;
+    text-align: center;
+    line-height: 30px;
+    background-color: #ccc;
+    }
+    
+    .rds {
+    background-color: rgb(0, 217, 255);
+    }
+    </style>
 </head>
+
 <body>
-    <div>sss</div>
-    <div>ss3ssdaa</div>
-    <div>sssesd</div>
-    <div>ssssd2fsd而非安抚fesffew</div>
-    <ul>
-        <li><a href="#"></a></li>
-    </ul>
+    <div>
+        <img src="./images/1.jpg" alt="">
+        <img src="./images/2.jpg" alt="">
+        <img src="./images/3.jpg" alt="">
+        <img src="./images/4.jpg" alt="">
+        <ul>
+            <li>
+                1
+            </li>
+            <li>
+                2
+            </li>
+            <li>
+                3
+            </li>
+            <li>
+                4
+            </li>
+        </ul>
+    </div>
 </body>
+    <script>
+        var divclick=document.getElementsByTagName('div')[0];
+        var imgs_=document.getElementsByTagName('img');
+        var lis_=document.getElementsByTagName('li');
+        var index=0;
+        var jisqi=null;
+        divclick.addEventListener('mousover',jis)
+        function jis() {
+                index++;
+                if (index >= imgs_.length) {
+                    index = 0;
+                }
+                autoimg(index);
+            }
+        jisqi=setInterval(jis,1000);
+        function autoimg(x){
+            for (var i =0;i<imgs_.length;i++){
+                imgs_[i].style.display='none';
+                lis_[i].className='';
+            }
+            imgs_[x].style.display='block';
+            lis_[x].className='rds'
+        }
+        for(var i=0;i<imgs_.length;i++){
+            lis_[i].index = i;
+            lis_[i].onmouseenter=function(){
+                clearInterval(jisqi);
+                autoimg(this.index);
+            }
+            lis_[i].onmouseleave=function(){
+                index=this.index;
+                jisqi = setInterval(jis,1000 )
+            }
+        }
+    </script>
 </html>
